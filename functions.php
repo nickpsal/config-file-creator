@@ -72,33 +72,25 @@
 
     function create_config_file($data) {
         if (!file_exists('config.php')) {
-            $root_directory = $data['root_directory'];
-            $app_name = $data['app_name'];
-            $app_desc = $data['app_desc'];
-            $db_host = $data['db_host'];
-            $db_user = $data['db_user'];
-            $db_pass = $data['db_pass'];
-            $db_name = $data['db_name'];
             $create_file  = fopen("config.php", "w");
                 $params = "<?php \n";
                 $params .= "    /** \n";
                 $params .= "    * app info \n";
                 $params .= "    */ \n";
-                $params .= "    define('ROOT', '$root_directory'); \n";
-                $params .= "    define('APP_NAME' , '$app_name'); \n";
-                $params .= "    define('APP_DESC', '$app_desc'); \n";
+                $params .= "    define('ROOT', '{$data['root_directory']}'); \n";
+                $params .= "    define('APP_NAME' , '{$data['app_name']}'); \n";
+                $params .= "    define('APP_DESC', '{$data['app_desc']}'); \n";
                 $params .= "    /** \n";
                 $params .= "    * database config fill thε credentials for the database for local or live server \n";
                 $params .= "    */ \n";
-                $params .= "    define('DB_HOST', '$db_host'); \n";
-                $params .= "    define('DB_USER', '$db_user'); \n";
-                $params .= "    define('DB_PASS', '$db_pass'); \n";
-                $params .= "    define('DB_NAME', '$db_name'); \n";
+                $params .= "    define('DB_HOST', '{$data['db_host']}'); \n";
+                $params .= "    define('DB_USER', '{$data['db_user']}'); \n";
+                $params .= "    define('DB_PASS', '{$data['db_pass']}'); \n";
+                $params .= "    define('DB_NAME', '{$data['db_name']}'); \n";
                 $params .= "    define('DB_DRIVER', 'mysql');";
                 fwrite($create_file, $params);
             fclose($create_file);
         }else{
             echo "already exists";
         }
-        
     }
